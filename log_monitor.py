@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
+summary = {}
+
 for logfile in sys.argv[1:]:
     print(f"=== Checking {logfile} ===")
     count = 0
@@ -13,6 +15,12 @@ for logfile in sys.argv[1:]:
         print(f"Total issues in {logfile}: {count}")
         if count > 2:
             print(f"ALERT: {count} issues found in {logfile} — needs attention")
+        if count > 0:
+            summary[logfile] = count
     except FileNotFoundError:
         print(f"SKIPPED: {logfile} not found (maybe rotated or archived?)")
+        summary[logfile] = "SKIPPED - file not found"
     print()
+
+print("=== Summary Report ===")
+print(summary)
