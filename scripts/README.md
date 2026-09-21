@@ -1,1 +1,1 @@
-Log monitor script - maintained by Team A
+Log monitor script - maintained jointly by Team A and Team B
